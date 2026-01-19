@@ -3,7 +3,7 @@
     <div class="m-header flex items-center py-4 px-6 h-header-height">
       <a href="dashboard/index.html" class="b-brand flex items-center gap-3">
         <!-- ========   Change your logo from here   ============ -->
-        <img src="/assets/images/bus_icon.png" class="img-fluid logo logo-lg" alt="logo" />
+        <img src="assets/images/bus_icon.png" class="img-fluid logo logo-lg" alt="logo">
         <img src="assets/images/bus_icon.png" class="img-fluid logo logo-sm" alt="logo" />
       </a>
     </div>
@@ -14,7 +14,7 @@
         </li>
         <li class="pc-item">
         <li class="pc-item">
-          <a href="../dashboard/index.html" class="pc-link">
+          <a href="#" class="pc-link">
             <span class="pc-micon">
               <i data-feather="home"></i>
             </span>
@@ -27,7 +27,7 @@
               class="pc-mtext">Buses</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_bus.php">Register Bus</a></li>
-            <li class="pc-item"><a class="pc-link" href="#!">Bus List</a></li>
+            <li class="pc-item"><a class="pc-link" href="bus_list.php">Bus List</a></li>
           </ul>
         </li>
       </ul>
