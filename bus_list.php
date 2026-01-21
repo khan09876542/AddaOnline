@@ -1,7 +1,17 @@
+<?php
+include 'config/conn.php';
+
+$query = "SELECT * FROM buses";
+
+$stmt = $conn->prepare($query);
+$stmt->execute(); 
+ ?>
+
+
+
 <!doctype html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
-
   <head>
     <title>Traveling System</title>
     <!-- [Meta] -->
@@ -53,13 +63,43 @@ include 'config/header.php';
        ?>
 
         <!-----------------------PAGE MAIN CONTENT-------------------->
-        <div class="grid grid-cols-12 gap-x-6">
+        <div class="grid grid-cols-4 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
             
-         fdgsdfgsdf
-
-
-
+         <table class="table">
+    <thead>      
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">bus_No</th>
+      <th scope="col">total_Seats</th>
+      <th scope="col">status</th>
+      <th scope="col">Date</th>
+      <th scope="col">route_From</th>
+      <th scope="col">route_To</th>
+    </tr>
+    <!-------------------TABLE BODY------------------->
+    <tbody>
+      <?php
+      $count = 1;
+      while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+         
+       
+       ?>
+    <tr>
+      <td><?php echo $count++ ?></td>
+      <td><?php echo $data['bus_no']; ?></td>
+      <td><?php echo $data['total_seats']; ?></td>
+      <td><?php echo $data['status']; ?></td>
+      <td><?php echo $data['created_at']; ?></td>
+      <td><?php echo $data['route_from']; ?></td>
+      <td><?php echo $data['route_to']; ?></td>
+    </tr>
+    <?php
+    }  
+     ?>
+    </tbody>
+  </thead>
+</table>
 
           </div> 
         </div>
