@@ -23,12 +23,46 @@
         </li>
 
         <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
+          <a href="#" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
               class="pc-mtext">Buses</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_bus.php">Register Bus</a></li>
             <li class="pc-item"><a class="pc-link" href="bus_list.php">Bus List</a></li>
+            <li class="pc-item"><a class="pc-link" href="bus_shedule.php">Bus Shedule</a></li>
           </ul>
+        </li>
+
+         <li class="pc-item pc-hasmenu">
+          <a href="#" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
+              class="pc-mtext">Users</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
+          <ul class="pc-submenu">
+            <li class="pc-item "><a class="pc-link" href="users.php">Add Users</a></li>
+          </ul>
+        </li>
+
+        
+        <li class="pc-item pc-hasmenu">
+          <a href="#" class="pc-link">
+            <span class="pc-micon">
+              <i data-feather="align-right"></i>
+            </span>
+            <span class="pc-mtext">Authentication</span>
+            <span class="pc-arrow">
+              <i class="ti ti-chevron-right"></i>
+            </span>
+          </a>
+
+          <ul class="pc-submenu">
+            <li class="pc-item">
+              <a class="pc-link" href="userRegister.php">Register</a>
+            </li>
+            <li class="pc-item">
+              <a class="pc-link" href="login.php">Login</a>
+            </li>
+          </ul>
+        </li>
+
+
         </li>
       </ul>
     </div>

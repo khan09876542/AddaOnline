@@ -1,37 +1,42 @@
 <?php
 include 'config/conn.php';
+if (isset($_POST['submit'])) {
+  // print_r($_POST);
+  // exit;
 
-$query = "SELECT * FROM buses";
+   $username =  $_POST['username'];
+   $email = $_POST['email'];
+   $password = $_POST['password'];
+   $password = password_hash($password, PASSWORD_BCRYPT);
+   $phone = $_POST['phone'];
 
-$stmt = $conn->prepare($query);
-$stmt->execute(); 
+   $insertQuery = "INSERT INTO users(username , email , password , phone)VALUES(:username , :email , :password , :phone);";
+   $stmt = $conn->prepare($insertQuery);
+   $stmt->execute([
+   ':username' => $username,
+   ':email' => $email,
+   ':password' => $password,
+   ':phone' => $phone
+   ]);
+ }; 
  ?>
-
 
 
 <!doctype html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
+
   <head>
+
     <title>Traveling System</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="description"
-      content="Datta Able is trending dashboard template made using Bootstrap 5 design framework. Datta Able is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies."
-    />
-    <meta
-      name="keywords"
-      content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard"
-    />
-    <meta name="author" content="CodedThemes" />
-
     <!-- [Favicon] icon -->
     <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon" />
 
-	<!-----------------CSS LINKS---------------->
+  <!-----------------CSS LINKS---------------->
      <?php
      include 'config/site_css_links.php';
      ?>
@@ -63,52 +68,47 @@ include 'config/header.php';
        ?>
 
         <!-----------------------PAGE MAIN CONTENT-------------------->
-        <div class="grid grid-cols-4 gap-x-6">
+        <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
             
-         <table class="table">
-    <thead>      
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">bus_No</th>
-      <th scope="col">total_Seats</th>
-      <th scope="col">Route_from</th>
-      <th scope="col">Route_to</th>
-      <th scope="col">Date</th>
-      <th scope="col">Status</th>
-    </tr>
-    <!-------------------TABLE BODY------------------->
-    <tbody>
-      <?php
-      $count = 1;
-      while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
-         
-       
-       ?>
-    <tr>
-      <td><?php echo $count++ ?></td>
-      <td><?php echo $data['bus_no']; ?></td>
-      <td><?php echo $data['total_seats']; ?></td>
-      <td><?php echo $data['route_from']; ?></td>
-      <td><?php echo $data['route_to']; ?></td>
-      <td><?php echo $data['created_at']; ?></td>
-      <td><?php echo $data['status']; ?></td>
-    </tr>
-    <?php
-    }  
-     ?>
-    </tbody>
-  </thead>
-</table>
 
+<form method="POST">
+    <div class="row">
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Name" name="username" required="">
+  </div>
+  <br>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Email" name="email" required="">
+  </div>
+  <br>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Password" name="password" required="">
+  </div>
+  <br>
+  <div class="col">
+    <input type="text" class="form-control" placeholder="Phone" name="phone" required="">
+  </div>
+<br>
+<br>
+  <center><button class="btn btn-success" name="submit">Adduser</button></center>
+
+</form>
           </div> 
         </div>
       </div>
     </div>
-   
+</div>
+
+
+
     <?php
     include 'config/footer.php';
     ?>
+
+
+    
+
  
     <!----------------JS LINKS----------------->
    <?php
