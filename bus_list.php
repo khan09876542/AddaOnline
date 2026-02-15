@@ -9,7 +9,7 @@ $stmt->execute();
 
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
   <head>
@@ -65,7 +65,8 @@ include 'config/header.php';
         <!-----------------------PAGE MAIN CONTENT-------------------->
         <div class="grid grid-cols-4 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            
+            <h3>bus list</h3>
+            <br>
          <table class="table">
     <thead>      
     <tr>
@@ -93,6 +94,12 @@ include 'config/header.php';
       <td><?php echo $data['route_to']; ?></td>
       <td><?php echo $data['created_at']; ?></td>
       <td><?php echo $data['status']; ?></td>
+      <td>
+        <a href="manage_seats.php?id=<?= $data['id'] ?>" 
+       class="btn btn-sm btn-primary">
+       Manage Seats
+    </a>
+      </td>
     </tr>
     <?php
     }  
@@ -100,6 +107,8 @@ include 'config/header.php';
     </tbody>
   </thead>
 </table>
+    
+  
 
           </div> 
         </div>

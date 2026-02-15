@@ -1,28 +1,10 @@
 <?php
 include 'config/conn.php';
-if (isset($_POST['submit'])) {
-  // print_r($_POST);
-  // exit;
 
-   $username =  $_POST['username'];
-   $email = $_POST['email'];
-   $password = $_POST['password'];
-   $password = password_hash($password, PASSWORD_BCRYPT);
-   $phone = $_POST['phone'];
-
-   $insertQuery = "INSERT INTO users(username , email , password , phone)VALUES(:username , :email , :password , :phone);";
-   $stmt = $conn->prepare($insertQuery);
-   $stmt->execute([
-   ':username' => $username,
-   ':email' => $email,
-   ':password' => $password,
-   ':phone' => $phone
-   ]);
- }; 
  ?>
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
 
@@ -72,28 +54,7 @@ include 'config/header.php';
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
             
 
-<form method="POST">
-    <div class="row">
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Name" name="username" required="">
-  </div>
-  <br>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Email" name="email" required="">
-  </div>
-  <br>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Password" name="password" required="">
-  </div>
-  <br>
-  <div class="col">
-    <input type="text" class="form-control" placeholder="Phone" name="phone" required="">
-  </div>
-<br>
-<br>
-  <center><button class="btn btn-success" name="submit">Adduser</button></center>
 
-</form>
           </div> 
         </div>
       </div>

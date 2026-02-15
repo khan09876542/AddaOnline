@@ -101,7 +101,7 @@ include 'config/header.php';
     <section class="content">
         <div class="container-fluid">
 
-            <h4>Bus Shedule</h4>
+            <h3>Bus Shedule</h3>
             <br>
             <form method="POST">
 
@@ -136,9 +136,9 @@ include 'config/header.php';
                 </div>
               <br>
 
-                <button name="submit" class="btn btn-primary">
+               <center> <button name="submit" class="btn btn-primary">
                     Submit
-                </button>
+                </button></center>
 
             </form>
 
