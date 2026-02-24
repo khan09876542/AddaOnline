@@ -1,8 +1,8 @@
 <?php
-include 'config/conn.php';
+require 'config/conn.php';
 $id = $_GET['id'];
 
-$query = "SELECT bus_no , total_seats from buses where id = $id";
+$query = "SELECT bus_no,total_seats from buses where id = $id";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 
@@ -66,11 +66,11 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     	<th>TotalSeats <br><?= $row['total_seats'] ?></th>
     </tr>
 </thead>
-
-
+  
+    </table>
+    
+</form>
 </table>
-
-
 </div>
 </div>
 </div>

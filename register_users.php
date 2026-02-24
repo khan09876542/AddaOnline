@@ -1,4 +1,5 @@
 <?php
+session_start();
  include 'config/conn.php';
 if (isset($_POST['submit'])) {
   $userName = ucwords($_POST['username']);
@@ -28,8 +29,7 @@ if (isset($_POST['submit'])) {
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
- 
-   
+
     <!-- [Favicon] icon -->
     <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon" />
 
@@ -64,7 +64,6 @@ include 'config/header.php';
        include 'config/breadCrumb.php';
        ?>
 
-       
         <!-----------------------PAGE MAIN CONTENT-------------------->
         <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
@@ -113,10 +112,6 @@ include 'config/header.php';
     <?php
     include 'config/footer.php';
     ?>
- 
-
-
-
 
     <!----------------JS LINKS----------------->
    <?php

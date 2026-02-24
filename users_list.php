@@ -1,5 +1,13 @@
 <?php
-include 'auth.php';
+require 'config/conn.php';
+
+$selectQuery = "SELECT * FROM users";
+$stmt = $conn->prepare($selectQuery);
+$stmt->execute();
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
@@ -14,7 +22,7 @@ include 'auth.php';
     <!-- [Favicon] icon -->
     <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon" />
 
-	<!-----------------CSS LINKS---------------->
+  <!-----------------CSS LINKS---------------->
      <?php
      include 'config/site_css_links.php';
      ?>
@@ -48,8 +56,40 @@ include 'config/header.php';
         <!-----------------------PAGE MAIN CONTENT-------------------->
         <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
+            <h3>UserList</h3>
+            <br>
+            <br>
+          <table class="table">
+
+            <thead>
+              <th>UserId</th>
+              <th>UseName</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Date</th>
+              <th>Edit</th>
+            </thead>
+            <?php
+            $count = 1;
+
+            while ($select = $stmt->fetch(PDO::FETCH_ASSOC)) {
+             
+             ?>
+             <tr>
+               <td><?=$count++ ?></td>
+               <td><?= $select['username'] ?></td>
+               <td><?= $select['email'] ?></td>
+               <td><?= $select['phone'] ?></td>
+               <td><?= $select['created_at'] ?></td>
+               <td><a href="update_users_list.php?id=<?= $select['id'] ?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
+                <a href="delete.php?id=<?= $select['id'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+               </td>
+             </tr>
             
-         
+             <?php
+             } 
+              ?>
+            </table>
           </div> 
         </div>
       </div>

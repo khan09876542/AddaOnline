@@ -40,6 +40,8 @@
               class="pc-mtext">Users</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_users.php">Regiser Users</a></li>
+
+            <li class="pc-item "><a class="pc-link" href="users_list.php">UsersList</a></li>
           </ul>
         </li>
 
@@ -57,10 +59,10 @@
 
           <ul class="pc-submenu">
             <li class="pc-item">
-              <a class="pc-link" href="userRegister.php">Register</a>
+              <a class="pc-link" href="index.php">Login</a>
             </li>
             <li class="pc-item">
-              <a class="pc-link" href="login.php">Login</a>
+              <a class="pc-link" href="logOut.php">Logout</a>
             </li>
           </ul>
         </li>
