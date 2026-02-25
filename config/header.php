@@ -55,7 +55,7 @@
         <i data-feather="settings"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
-        <a href="#!" class="dropdown-item">
+        <a href="logOut.php" class="dropdown-item">
           <i class="ti ti-power"></i>
           <span>Logout</span>
         </a>

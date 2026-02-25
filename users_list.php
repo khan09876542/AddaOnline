@@ -15,6 +15,7 @@ $stmt->execute();
 
   <head>
     <title>Traveling System</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -81,8 +82,12 @@ include 'config/header.php';
                <td><?= $select['email'] ?></td>
                <td><?= $select['phone'] ?></td>
                <td><?= $select['created_at'] ?></td>
-               <td><a href="update_users_list.php?id=<?= $select['id'] ?>" class="btn btn-success"><i class="fa fa-edit"></i></a>
-                <a href="delete.php?id=<?= $select['id'] ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+               <td><a href="update_users_list.php?id=<?= $select['id'] ?>"  class="btn btn-success"><i class="fa fa-edit"></i></a>
+            <a href="delete.php?id=<?= $select['id'] ?>"
+            class="btn btn-danger"
+            onclick="return deleteConfirm(this);">
+            <i class="fa fa-trash"></i>
+            </a>
                </td>
              </tr>
             
@@ -116,3 +121,54 @@ include 'config/header.php';
   </body>
   <!-- [Body] end -->
 </html>
+<script>
+
+function deleteConfirm(el) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "you want to delete data!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'Cancel'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = el.href; 
+    }
+  });
+
+  return false;   
+}
+</script>
+
+
+</script>
+<?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted') { ?>
+<script>
+Swal.fire({
+  icon: 'success',
+  title: 'Deleted!',
+  text: 'Data deleted successfully',
+  confirmButtonColor: '#28a745'
+});
+</script>
+<?php } ?>
+
+
+
+
+</script>
+<?php if (isset($_GET['msg']) && $_GET['msg'] == 'updated') { ?>
+<script>
+Swal.fire({
+  icon: 'success',
+  title: 'Updated!',
+  text: 'Data updated successfully',
+  confirmButtonColor: '#28a745'
+});
+</script>
+<?php } ?>
+
+

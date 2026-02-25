@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 	$stmt->execute();
 
 // -------------LOCATION----------------
-	header("Location: users_list.php");
+	header("Location: users_list.php?msg=updated");
 	exit;
 }
 

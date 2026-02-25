@@ -41,7 +41,7 @@
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_users.php">Regiser Users</a></li>
 
-            <li class="pc-item "><a class="pc-link" href="users_list.php">UsersList</a></li>
+            <li class="pc-item "><a class="pc-link" href="users_list.php">Users List</a></li>
           </ul>
         </li>
 

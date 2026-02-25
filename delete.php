@@ -6,6 +6,6 @@ $delete = "DELETE FROM users WHERE id = $id";
 $stmt = $conn->prepare($delete);
 $stmt->execute();
 
-header("Location: users_list.php");
+header("Location: users_list.php?msg=deleted");
 
  ?>
