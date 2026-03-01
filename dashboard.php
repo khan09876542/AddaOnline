@@ -11,8 +11,14 @@ include 'config/conn.php';
 $query = "SELECT COUNT(id) AS total_buses FROM buses;";
 $stmt = $conn->prepare($query);
 $stmt->execute();
-
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
+$query = "SELECT COUNT(id) AS user FROM users;";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+$row2 = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -64,7 +70,7 @@ include 'config/header.php';
         <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
    
-            <div class="col-md-3">
+            <div class="col-6">
   <div class="card shadow-sm">
     <div class="card-body d-flex align-items-center">
       <div class="me-3 fs-2 text-primary">
@@ -73,6 +79,14 @@ include 'config/header.php';
       <div>
         <h6 class="mb-0">Total Buses</h6>
         <h4 class="mb-0"><?= $row['total_buses']; ?></h4>
+      </div>
+
+      <div class="me-3 fs-2 text-success" style="margin-left: 200px">
+        <i class="bi bi-person-badge"></i>
+      </div>
+      <div>
+        <h6 class="mb-0">Users</h6>
+        <h4 class="mb-0"><?= $row2['user'] ?></h4>
       </div>
     </div>
   </div>
