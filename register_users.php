@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php");
+  exit;
+  }
  include 'config/conn.php';
 if (isset($_POST['submit'])) {
   $userName = ucwords($_POST['username']);
@@ -25,6 +29,7 @@ if (isset($_POST['submit'])) {
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
   <head>
+   
     <title>Traveling System</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
@@ -55,7 +60,6 @@ include 'config/sideBar.php';
 <?php
 include 'config/header.php';
 ?>
-
     <!-- [ Main Content ] start -->
     <div class="pc-container">
       <div class="pc-content">
@@ -65,50 +69,51 @@ include 'config/header.php';
        ?>
 
         <!-----------------------PAGE MAIN CONTENT-------------------->
-        <div class="grid grid-cols-12 gap-x-6">
-          <div class="col-span-12 xl:col-span-4 md:col-span-6">
-                    
+      <div class="grid grid-cols-12 gap-x-6">
+      <div class="col-span-12 xl:col-span-4 md:col-span-6">
         <div class="content-wrapper">
-    <section class="content">
+      <section class="content">
         <div class="container-fluid">
+          <!-----------ADD Users-------------->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                Add Users
+        </button>
 
-            <h4>Register Users</h4>
-
-            <form method="POST">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" name="username" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" class="form-control" required>
-                </div>
-
-                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="text" name="password" class="form-control" required>
-                </div>
-
-                 <div class="form-group">
-                    <label>Phone</label>
-                    <input type="text" name="phone" class="form-control" required>
-                </div>
-              <br>
-
-                <button name="submit" class="btn btn-primary">
-                    submit
-                </button>
-            </form>
-
-        </div>
-    </section>
-</div>
-          </div> 
-        </div>
+<!-- Modal -->
+ <form method="post">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Register Users</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" name="username" placeholder="your Name..." class="form-control">
+        
+        <input type="text" name="email" placeholder="Your Email..." class="form-control mt-3">
+        
+        <input type="text" name="password" placeholder="Your Password..." class="form-control mt-3">
+        
+        <input type="text" name="phone" placeholder="Your Phone..." class="form-control mt-3">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       </div>
     </div>
-   
+  </div>
+</div>
+</form>
+</div>
+</div>
+</section>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
     <?php
     include 'config/footer.php';
     ?>
@@ -118,15 +123,10 @@ include 'config/header.php';
    include 'config/site_js_links.php';
    ?>
 
-    <div class="floting-button fixed bottom-[50px] right-[30px] z-[1030]">
-    </div>
-
 <!----------------LAYOUT SETTING-------------------->
   <?php
   include 'config/layOut_sitting.php'; 
    ?>
     
-
   </body>
-  
 </html>

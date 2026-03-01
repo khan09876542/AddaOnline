@@ -1,5 +1,19 @@
 <?php
-include 'auth.php';
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php");
+  exit;
+}
+include 'config/conn.php';
+
+$query = "SELECT COUNT(id) AS total_buses FROM buses;";
+$stmt = $conn->prepare($query);
+$stmt->execute();
+
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
 ?>
 <!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
@@ -40,6 +54,7 @@ include 'config/header.php';
     <!-- [ Main Content ] start -->
     <div class="pc-container">
       <div class="pc-content">
+
         <!--------------------BREAD CRUMB------------------->
        <?php
        include 'config/breadCrumb.php';
@@ -48,7 +63,23 @@ include 'config/header.php';
         <!-----------------------PAGE MAIN CONTENT-------------------->
         <div class="grid grid-cols-12 gap-x-6">
           <div class="col-span-12 xl:col-span-4 md:col-span-6">
-            
+   
+            <div class="col-md-3">
+  <div class="card shadow-sm">
+    <div class="card-body d-flex align-items-center">
+      <div class="me-3 fs-2 text-primary">
+        <i class="bi bi-bus-front"></i>
+      </div>
+      <div>
+        <h6 class="mb-0">Total Buses</h6>
+        <h4 class="mb-0"><?= $row['total_buses']; ?></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
          
           </div> 
         </div>

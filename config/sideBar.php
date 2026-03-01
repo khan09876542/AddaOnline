@@ -1,3 +1,9 @@
+<?php 
+// session_start();
+ ?>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header flex items-center py-4 px-6 h-header-height">
@@ -14,7 +20,7 @@
         </li>
         <li class="pc-item">
         <li class="pc-item">
-          <a href="#" class="pc-link">
+          <a href="dashboard.php" class="pc-link">
             <span class="pc-micon">
               <i data-feather="home"></i>
             </span>
@@ -25,7 +31,7 @@
           
 
         <li class="pc-item pc-hasmenu">
-          <a href="#" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
+          <a href="#" class="pc-link"><span class="pc-micon"> <i class="bi bi-bus-front-fill"></i> </span><span
               class="pc-mtext">Buses</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_bus.php">Add Bus</a></li>
@@ -36,10 +42,11 @@
         </li>
 
          <li class="pc-item pc-hasmenu">
-          <a href="#" class="pc-link"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
+          <a href="#" class="pc-link"><span class="pc-micon"> <i class="bi bi-person"></i> </span><span
               class="pc-mtext">Users</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a>
           <ul class="pc-submenu">
             <li class="pc-item "><a class="pc-link" href="register_users.php">Regiser Users</a></li>
+            
 
             <li class="pc-item "><a class="pc-link" href="users_list.php">Users List</a></li>
           </ul>
@@ -49,7 +56,7 @@
         <li class="pc-item pc-hasmenu">
           <a href="#" class="pc-link">
             <span class="pc-micon">
-              <i data-feather="align-right"></i>
+             <i class="bi bi-key"></i>
             </span>
             <span class="pc-mtext">Authentication</span>
             <span class="pc-arrow">

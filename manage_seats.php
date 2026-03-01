@@ -1,20 +1,59 @@
 <?php
-require 'config/conn.php';
-$id = $_GET['id'];
+session_start();
 
-$query = "SELECT bus_no,total_seats from buses where id = $id";
-$stmt = $conn->prepare($query);
-$stmt->execute();
+include("config/conn.php");
 
+if (isset($_GET['id'])) {
+    $bus_id = $_GET['id'];
+    $_SESSION['id'] = $bus_id;
+} elseif (isset($_SESSION['id'])) {
+    $bus_id = $_SESSION['id'];
+} else {
+    echo "<script>alert('Please select a bus first');</script>";
+    echo "<script>window.location.href='bus_list.php';</script>";
+    exit;
+
+}
+
+    $query = "SELECT bus_no , total_seats FROM buses WHERE id = $bus_id;";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-?>
 
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
 
   <head>
+    <style>
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 60px); /* 5 seats per row */
+    gap: 10px;
+}
+.seat {
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.seat.available {
+    background-color: #ddd;
+}
+.seat.booked {
+    background-color: #f88;
+    cursor: not-allowed;
+}
+.seat.selected {
+    background-color: #8f8 !important;
+}
+</style>
     <title></title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
@@ -62,14 +101,32 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
          <table class="table">
     <thead>      
     <tr>
-    	<th>busNo <br><?= $row['bus_no']; ?></th>
-    	<th>TotalSeats <br><?= $row['total_seats'] ?></th>
+    	<th>busNo <br><?=$row['bus_no'] ?></th>
+    	<th>TotalSeats <br><?=$row['total_seats'] ?></th>
     </tr>
 </thead>
   
     </table>
-    
-</form>
+    <?php
+$totalSeats = $row['total_seats'];
+$bookedSeats = [];
+
+// $q = $conn->prepare("SELECT seat_no FROM seats WHERE bus_id = ? AND status = 'booked'");
+// $q->execute([$bus_id]);
+
+// while ($r = $q->fetch(PDO::FETCH_ASSOC)) {
+//     $bookedSeats[] = $r['seat_no'];
+// }
+
+echo '<div class="seat-grid">';
+for ($i = 1; $i <= $totalSeats; $i++) {
+    $class = in_array($i, $bookedSeats) ? 'seat booked' : 'seat available';
+    echo "<div class='$class' data-seat='$i'>$i</div>";
+}
+echo '</div>';
+?>
+
+<button id="saveSeats" class="btn btn-success mt-3">Save Seats</button>
 </table>
 </div>
 </div>
@@ -92,3 +149,17 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
   </body>
   <!-- [Body] end -->
 </html>
+<script>
+document.querySelectorAll('.seat.available').forEach(seat => {
+    seat.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        if(this.classList.contains('selected')){
+            this.style.backgroundColor = '#8f8'; // selected color
+        } else {
+            this.style.backgroundColor = '#ddd'; // deselected
+        }
+    });
+});
+
+</script>
+

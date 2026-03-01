@@ -1,8 +1,7 @@
 <?php
 session_start();
+
 include 'config/conn.php';
-
-
 
 if (isset($_POST['login'])) {
 
@@ -23,7 +22,7 @@ if (isset($_POST['login'])) {
 
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['email'] = $user['email'];
-
+             
             header("Location: dashboard.php");
             exit();
 

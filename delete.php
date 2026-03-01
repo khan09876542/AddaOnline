@@ -1,5 +1,6 @@
 <?php
 require 'config/conn.php';
+
 $id = $_GET['id'];
 
 $delete = "DELETE FROM users WHERE id = $id";

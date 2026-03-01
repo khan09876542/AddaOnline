@@ -1,5 +1,10 @@
 <?php
+session_start();
  include 'config/conn.php';
+ if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php");
+  exit;
+}
  if (isset($_POST['save_bus'])) {
    $busNo = $_POST['bus_no'];
    $seats = $_POST['total_seats'];
@@ -22,7 +27,7 @@ $conn->rollback();
  ?>
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" dir="ltr" data-pc-theme="light">
   <!-- [Head] start -->
   <head>
@@ -107,7 +112,7 @@ include 'config/header.php';
                     <input type="text" name="route_to" class="form-control" required>
                 </div>
               <br>
-
+              
                 <button name="save_bus" class="btn btn-primary">
                     Register
                 </button>

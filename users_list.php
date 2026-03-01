@@ -1,6 +1,10 @@
 <?php
+session_start();
 require 'config/conn.php';
-
+if (!isset($_SESSION['user_id'])) {
+  header("Location: index.php");
+  exit;
+}
 $selectQuery = "SELECT * FROM users";
 $stmt = $conn->prepare($selectQuery);
 $stmt->execute();
@@ -15,8 +19,11 @@ $stmt->execute();
 
   <head>
     <title>Traveling System</title>
+
+  <!------SWEET ALERT LIBRARY USE FOR TO SHOW POPUP---->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- [Meta] -->
+
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -143,7 +150,7 @@ function deleteConfirm(el) {
 }
 </script>
 
-
+<!----------------------SHOW DELETED MSG------------------>
 </script>
 <?php if (isset($_GET['msg']) && $_GET['msg'] == 'deleted') { ?>
 <script>
@@ -154,14 +161,19 @@ Swal.fire({
   confirmButtonColor: '#28a745'
 });
 </script>
-<?php } ?>
+<?php 
+} 
+?>
 
 
 
-
+<!-----------------SHOW UPDATED MSG---------------------->
 </script>
-<?php if (isset($_GET['msg']) && $_GET['msg'] == 'updated') { ?>
+
+<?php 
+ if (isset($_GET['msg']) && $_GET['msg'] == 'updated') { ?>
 <script>
+
 Swal.fire({
   icon: 'success',
   title: 'Updated!',
